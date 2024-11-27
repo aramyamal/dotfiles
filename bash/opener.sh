@@ -1,16 +1,3 @@
-# # Preview script for fzf for showing file trees and hex content
-# if [ -d "$1" ]; then
-#     eza --color=always -T -F -a -L 3 -I 'node_modules|.git|.venv|.vscode|__pycache__' "$1"
-# else
-# 	BAT_TEST=$(file --mime "$1")
-# 	if [[ $BAT_TEST == *binary ]] ; then
-# 		hexyl -n 4kB "$1"
-# 	else
-# 		# batcat --color=always --theme=gruvbox-material-light --style=numbers --line-range=:500 "$1"
-#         dbat.sh --style=numbers --line-range=:500 "$1"
-# 	fi
-# fi
-
 # Preview script for fzf for showing file trees, image previews and hex content
 if [ -d "$1" ]; then
     eza --color=always -T -F -a -L 3 -I 'node_modules|.git|.venv|.vscode|__pycache__' "$1"
