@@ -62,8 +62,8 @@
     (w o)    (caps-word 2000)   $chord-time all-released  ()
     (i o)    ]                  $chord-time all-released  ()
     (u i)    [                  $chord-time all-released  ()
-    (w e)    \                  $chord-time all-released  ()
-    (e r)    =                  $chord-time all-released  ()
+    (w e)    =                  $chord-time all-released  ()
+    (e r)    \                  $chord-time all-released  ()
     (w r)    grv                $chord-time all-released  ()
     (u o)    '                  $chord-time all-released  ()
 

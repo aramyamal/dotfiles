@@ -15,7 +15,7 @@
 )
 (defvar
   tap-time 200
-  hold-time 300
+  hold-time 120
   hold-time-sft 120
   hold-time-ctrl 150
   chord-time 20
@@ -59,8 +59,8 @@
     (s l)    (caps-word 2000)   $chord-time all-released  ()
     (k l)    ]                  $chord-time all-released  ()
     (j k)    [                  $chord-time all-released  ()
-    (s d)    \                  $chord-time all-released  ()
-    (d f)    =                  $chord-time all-released  ()
+    (s d)    =                  $chord-time all-released  ()
+    (d f)    \                  $chord-time all-released  ()
     (s f)    grv                $chord-time all-released  ()
     (j l)    '                  $chord-time all-released  ()
 
