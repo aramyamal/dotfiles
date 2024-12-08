@@ -3,7 +3,6 @@
   process-unmapped-keys yes
   concurrent-tap-hold yes
   linux-dev /dev/input/by-path/pci-0000\:00\:14.0-usb-0\:3.3\:1.0-event-kbd
-
 )
 
 (defsrc
@@ -14,6 +13,7 @@
   lsft < z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet rctl
 )
+
 (defvar
   tap-time 200
   hold-time 200
@@ -28,6 +28,8 @@
   sym1 (layer-while-held sym1)
   sym2 (layer-while-held sym2)
   armo (layer-while-held arrowmouse)
+  entergaming (layer-switch gaming)
+  exitgaming (layer-switch default)
 
   a (tap-hold $tap-time $hold-time-ctrl a lctrl)
   s1 (tap-hold $tap-time $hold-time-ctrl S-1 lctrl)
@@ -50,6 +52,8 @@
   mal (movemouse-accel-left 10 2000 2 9)
   mad (movemouse-accel-down 10 2000 2 9)
   mar (movemouse-accel-right 10 2000 2 9)
+
+  psc M-S-s
 )
 
 (defchordsv2-experimental
@@ -81,7 +85,7 @@
 
 (deflayer sym1
   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    1    2    3    4    5    6    7    8    9    0    _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    0    _    _
   _    @s1  @s2  S-3  S-4  S-5  S-6  S-7  S-8  @s9  @s0  _    _    _
   _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  _    _
   _ _  _    _    _    _    _    -    f12  _    _    _    _
@@ -89,7 +93,7 @@
 )
 (deflayer sym2
   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    1    2    3    4    5    6    7    8    9    0    _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    0    _    _
   _    @s1  @s2  S-3  S-4  S-5  S-6  S-7  S-8  @s9  @s0  _    _    _
   _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  _    _
   _ _  _    _    f11   -    _    _    _    _    _    _    _
@@ -98,9 +102,18 @@
 
 (deflayer arrowmouse
   _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    lctl lsft _    _    _    bck  pgdn pgup fwd  _    _    _    _
-  _    _    _    _    _    _    left down up   rght _    _    _    _    
+  _    @psc _   _    _    _    bck  pgdn pgup fwd  _    _    _    _
+  _    lctl lsft _    _    _    left down up   rght _    _    _    _    
   _    _    _    _    _    _    @mal @mad @mau @mar _    _    _
-  _ _  _    _    lmet _    _    mrtp mmtp _    _    _    _
+  _ _  _    _    lmet @entergaming    _    mrtp mmtp _    _    _    _
   _    _       _           mltp           _    _    _ 
 )
+
+ (deflayer gaming
+  _    _    _    _    _    _    _    _    _    _    _    _    _ 
+  _    esc  _    q    w    e    t    _    _    _    _    _    _  _
+  _    tab  lctl a    s    d    g    _    _    _   _   _    _  _
+  _    lsft    _    z    x    c   _    _    _    _     _    _    _
+  _ _ _ lmet _ @exitgaming   _ _                  rmet  _  _    _    _ 
+  _    _    _                 spc _    _    _
+  )

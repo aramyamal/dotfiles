@@ -47,8 +47,10 @@
   mal (movemouse-accel-left 10 2000 2 9)
   mad (movemouse-accel-down 10 2000 2 9)
   mar (movemouse-accel-right 10 2000 2 9)
-)
 
+  psc M-S-s
+)
+ 
 (defchordsv2-experimental
     ;; (w e)    tab                $chord-time all-released  ()
     ;; (x c)    esc                50          all-released  ()
@@ -89,8 +91,8 @@
 (deflayer arrowmouse
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    bck  pgdn pgup fwd  _    _    _    _
-  _    _    _    _    _    _    left down up   rght _    _    _    
+  _    @psc _    _    _    _    bck  pgdn pgup fwd  _    _    _    _
+  _    lctl lsft _    _    _    left down up   rght _    _    _    
   _ _  _    _    _    _    _    @mal @mad @mau @mar _    _
   _    _    lmet           mltp           mrtp _    mmtp 
 )
