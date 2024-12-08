@@ -38,6 +38,10 @@
   sym (layer-while-held sym)
   armo (layer-while-held arrowmouse)
 
+  off (layer-switch off)
+  on (layer-switch default)
+
+
   spc-sym (tap-hold $tap-time $hold-time spc @sym)
   ret-ralt (tap-hold $tap-time $hold-time ret ralt)
   tab-lalt (tap-hold $tap-time $hold-time tab lalt)
@@ -93,6 +97,15 @@
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    @psc _    _    _    _    bck  pgdn pgup fwd  _    _    _    _
   _    lctl lsft _    _    _    left down up   rght _    _    _    
-  _ _  _    _    _    _    _    @mal @mad @mau @mar _    _
+  _ @off _  _    _    _    _    @mal @mad @mau @mar _    _
   _    _    lmet           mltp           mrtp _    mmtp 
+)
+
+(deflayer off
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft @on z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
 )
