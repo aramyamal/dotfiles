@@ -21,6 +21,10 @@
   chord-time 20
 )
 
+(defoverrides
+  (rctl w) (lctl bspc)
+)
+
 (defalias
   cec (tap-hold 100 150 esc lctl)
 
