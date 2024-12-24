@@ -9,8 +9,8 @@ alias st='st.sh'
 # make bat colors dynamic depending on system theme
 alias bat='dbat.sh'
 
-# replace cat with batcat
-alias cat='batcat'
+# # replace cat with batcat
+# alias cat='batcat'
 
 # change ls to eza
 alias ls='eza'
