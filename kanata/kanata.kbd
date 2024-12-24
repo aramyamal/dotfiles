@@ -23,6 +23,8 @@
 
 (defoverrides
   (rctl w) (lctl bspc)
+  (lctl ,) (lctl lsft n)
+  (lctl .) (lctl lsft m)
 )
 
 (defalias
@@ -44,7 +46,6 @@
 
   off (layer-switch off)
   on (layer-switch default)
-
 
   spc-sym (tap-hold $tap-time $hold-time spc @sym)
   ret-ralt (tap-hold $tap-time $hold-time ret ralt)
