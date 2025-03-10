@@ -43,7 +43,7 @@
   ; (tap-hold $tap-time $hold-time-ctrl ; rctrl)
   s0 (tap-hold $tap-time $hold-time-ctrl S-0 rctrl)
 
-  esc (caps-word 2000)
+  esc (caps 2000)
 
   sym (layer-while-held sym)
   armo (layer-while-held arrowmouse)

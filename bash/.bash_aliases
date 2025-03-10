@@ -15,6 +15,8 @@ alias bat='dbat.sh'
 # change ls to eza
 alias ls='eza'
 
+# keep ls as lsraw
+
 # change tree to eza -T
 alias tree='eza -T -F --color=always'
 
@@ -22,6 +24,9 @@ alias tree='eza -T -F --color=always'
 alias ll='ls -alF'
 alias la='ls -AF'
 alias l='ls -F'
+
+# keep original ls as lsraw
+alias ls_="$(which ls)"
 
 # fzf aliases
 alias fz="fzf \
