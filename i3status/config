@@ -1,0 +1,53 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    markup = "pango"
+    interval = 5
+}
+
+order += "load"
+order += "battery 0"
+order += "cpu_temperature 0"
+order += "disk /home"
+order += "volume master"
+order += "volume mic"
+order += "time"
+
+battery 0 {
+    format = " %status %percentage %remaining (%consumption)"
+    path = "/sys/class/power_supply/BAT%d/uevent"
+    low_threshold = "30"
+    threshold_type = "time"
+    last_full_capacity = true
+    integer_battery_capacity = true
+}
+
+time {
+    format = " %Y-%m-%d %a %H:%M"
+}
+
+cpu_temperature 0 {
+     format = " %degrees °C"
+     max_threshold = 65
+     path = "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input"
+}
+
+volume master {
+    format = "  %volume"
+    format_muted = ""
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+    color_degraded = "#FFFFFF"
+}
+
+volume mic {
+    format = "MIC placeholder"
+    device = "default"
+    mixer = "Capture"
+}
+
+load {
+    format = " %1min %5min %15min"
+    max_threshold = 7
+}

@@ -31,14 +31,14 @@
 (defalias
   cec (tap-hold 100 150 esc lctl)
 
-  a (tap-hold $tap-time $hold-time-ctrl a lalt)
+  a (tap-hold $tap-time $hold-time-ctrl a lmet)
   s (tap-hold $tap-time $hold-time-sft s ralt)
   f (tap-hold $tap-time $hold-time-sft f rsft)
   j (tap-hold $tap-time $hold-time-sft j rsft)
   d (tap-hold $tap-time $hold-time-sft d lctl)
   k (tap-hold $tap-time $hold-time-sft k rctl)
   l (tap-hold $tap-time $hold-time-sft l ralt)
-  ' (tap-hold $tap-time $hold-time-ctrl ' lalt)
+  ' (tap-hold $tap-time $hold-time-ctrl ' rmet)
   ;; s0 (tap-hold $tap-time $hold-time-ctrl S-0 rmet)
 
   esc (caps-word 2000)
@@ -74,7 +74,7 @@
 )
 
 (defchordsv2-experimental
-    (s l)    caps               $chord-time all-released  ()
+    (f j)    caps               $chord-time all-released  ()
     (k l)    ]                  $chord-time all-released  ()
     (j k)    (tap-hold $tap-time $hold-time [ (multi rctl rsft)) $chord-time all-released  ()
     (i o)    S-0                $chord-time all-released  ()
@@ -90,7 +90,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    p    ]    \
   @cec @a   @s   @d   @f   g    h    @j   @k   @l   @'   ;    ret
-  lsft @esc-arr z   x    c    v    b    n    m    ,    .    /    rsft
+  lsft lalt z   x    c    v    b    n    m    ,    .    /    lalt
   lctl @esc-arr @tab-arro       @spc-sym       @ret-num   - @bspc-fky
 )
 

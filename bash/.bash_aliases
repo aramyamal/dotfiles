@@ -71,3 +71,7 @@ fcd() {
 
 # gpu monitor
 alias gpu="nvidia-smi -q -g 0 -d UTILIZATION -l 1"
+
+# tmux switch theme
+export TMUX_LIGHT="/home/aramjamal/.config/bash/tmux_light.sh"
+export TMUX_DARK="/home/aramjamal/.config/bash/tmux_dark.sh"
