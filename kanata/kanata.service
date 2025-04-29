@@ -1,0 +1,12 @@
+[Unit]
+Description=Kanata key remapping daemon for laptop keyboard
+Requires=local-fs.target
+After=local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/home/aramjamal/.cargo/bin/kanata --cfg /home/aramjamal/.config/kanata/kanata.kbd
+
+[Install]
+WantedBy=sysinit.target
+
