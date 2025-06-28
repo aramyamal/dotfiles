@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+gsettings set org.gnome.desktop.interface color-scheme prefer-light
+gsettings set org.gnome.desktop.interface gtk-theme 'Everforest-Light-Medium'
+
+THEME="everforest"
+
+for SOCKET in /run/user/1000/nvim.*; do
+  nvim --server "$SOCKET" --remote-send ":colorscheme $THEME<CR>"
+done
+
+kitty +kitten themes --reload-in=all 'Everforest Light Medium'
+hyprctl hyprpaper reload "eDP-1, ~/pictures/franz_richard_unterberger-amalfi.jpg"
+
+hyprctl keyword general:col.active_border "rgba(93b259ee)"
+hyprctl keyword general:col.inactive_border = "rgba(e0dcc7aa)"
+
+# waybar
+sed -i '0,/black_metal\.css/s//everforest-light.css/' "$HOME/.config/waybar/style.css"
+# pkill -SIGUSR2 waybar
+
+# tmux
+tmux source-file ~/.config/tmux/everforest-light.conf
+tmux refresh-client -S
+
+# mako
+cat ~/.config/mako/light/config > ~/.config/mako/config
+makoctl reload
+notify-send "Switched to light theme" "Everforest Light Medium"

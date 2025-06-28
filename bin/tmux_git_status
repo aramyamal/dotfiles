@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+cd "$1" 2>/dev/null || exit
+
+branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+[ -z "$branch" ] && exit
+
+status=$(git status --porcelain 2>/dev/null)
+
+# Untracked files
+untracked=$(echo "$status" | grep '^??' | wc -l)
+
+# Unstaged changes: second column is M or D
+changed=$(echo "$status" | grep -E '^[ MARC][MD] ' | wc -l)
+
+# Staged additions: first column is A or M
+staged_add=$(echo "$status" | grep -E '^[AM]' | wc -l)
+
+# Staged deletions: first column is D
+staged_del=$(echo "$status" | grep -E '^D' | wc -l)
+
+out="$branch"
+[ "$untracked" -gt 0 ] && out="$out ??$untracked"
+[ "$changed" -gt 0 ] && out="$out ~$changed"
+[ "$staged_add" -gt 0 ] && out="$out +$staged_add"
+[ "$staged_del" -gt 0 ] && out="$out -$staged_del"
+
+echo "$out"

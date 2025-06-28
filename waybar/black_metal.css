@@ -1,0 +1,22 @@
+@define-color background #000000;
+@define-color foreground #c1c1c1;
+/* @define-color foreground #dd9999; */
+@define-color lighter #ffffff;
+
+/* Normal */
+@define-color white #ffffff;
+@define-color blue #888888;
+@define-color mauve #999999;
+@define-color maroon #a06666;
+@define-color yellow #dd9999;
+@define-color lavender #999999;
+@define-color green #5f8787;
+@define-color red #a06666;
+@define-color cyan #aaaaaa;
+@define-color black #000000;
+@define-color orange #5f8787;
+@define-color purple #999999;
+@define-color magenta #999999;
+
+/* misc */
+@define-color hover #333333;

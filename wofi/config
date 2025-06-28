@@ -1,0 +1,17 @@
+show=drun
+width=25%
+height=37%
+prompt=Search....
+normal_window=false
+location=center
+gtk-dark=true
+allow_images=false
+image_size=32
+insensitive=true
+allow_markup=true
+no_actions=true
+orientation=vertical
+#orientation=horizontal
+halign=fill
+content_halign=fill
+hide_search=false

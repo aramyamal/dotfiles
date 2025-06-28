@@ -1,0 +1,140 @@
+;; defsrc is still necessary
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft < z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+(defvar
+  tap-time 200
+  hold-time 120
+  hold-time-sft 120
+  hold-time-ctrl 150
+  chord-time 20
+)
+
+(defoverrides
+  (rctl w) (lctl bspc)
+  (lctl ,) (lctl 5)
+  (lctl .) (lctl 6)
+  (lsft bspc) (del)
+)
+
+(defalias
+  cec (tap-hold 100 150 esc lctl)
+
+  a (tap-hold $tap-time $hold-time-ctrl a lmet)
+  s (tap-hold $tap-time $hold-time-sft s ralt)
+  f (tap-hold $tap-time $hold-time-sft f rsft)
+  j (tap-hold $tap-time $hold-time-sft j rsft)
+  d (tap-hold $tap-time $hold-time-sft d lctl)
+  k (tap-hold $tap-time $hold-time-sft k rctl)
+  l (tap-hold $tap-time $hold-time-sft l ralt)
+  ' (tap-hold $tap-time $hold-time-ctrl ' rmet)
+  ;; s0 (tap-hold $tap-time $hold-time-ctrl S-0 rmet)
+
+  esc (caps-word 2000)
+
+  sym (layer-while-held sym)
+  fky (layer-while-held fky)
+  num (layer-while-held num)
+  arr (layer-while-held arrow)
+
+  off (layer-switch off)
+  on (layer-switch default)
+
+  spc-sym (tap-hold $tap-time $hold-time spc @sym)
+  ret-num (tap-hold $tap-time $hold-time ret @num)
+  tab-arro (tap-hold $tap-time $hold-time tab @arr)
+  esc-arr (tap-hold $tap-time $hold-time esc @arr)
+  bspc-fky (tap-hold $tap-time $hold-time bspc @fky)
+
+  mau (movemouse-accel-up 10 2000 2 9)
+  mal (movemouse-accel-left 10 2000 2 9)
+  mad (movemouse-accel-down 10 2000 2 9)
+  mar (movemouse-accel-right 10 2000 2 9)
+
+  mhu (multi mlft (movemouse-accel-up 10 2000 2 9))
+  mhl (multi mlft (movemouse-accel-left 10 2000 2 9))
+  mhd (multi mlft (movemouse-accel-down 10 2000 2 9))
+  mhr (multi mlft (movemouse-accel-right 10 2000 2 9))
+
+  psc M-S-s
+  
+  s0 (tap-dance 200 (S-0 S--))
+  mrtp (tap-dance 200 (mrtp mmtp))
+)
+
+(defchordsv2
+    (f j)    caps               $chord-time all-released  ()
+    (k l)    ]                  $chord-time all-released  ()
+    (j k)    (tap-hold $tap-time $hold-time [ (multi rctl rsft)) $chord-time all-released  ()
+    (i o)    S-0                $chord-time all-released  ()
+    (u i)    S-9                $chord-time all-released  ()
+    (, .)    S-]                $chord-time all-released  ()
+    (m ,)    S-[                $chord-time all-released  ()
+    (s d)    =                  $chord-time all-released  ()
+    (d f)    (tap-hold $tap-time $hold-time S-= (multi lctl lsft)) $chord-time all-released  ()
+)
+ 
+(deflayer default
+  @esc f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    p    ]    \
+  @cec @a   @s   @d   @f   g    h    @j   @k   @l   @'   ;    ret
+  lsft lalt z   x    c    v    b    n    m    ,    .    /    lalt
+  lctl @esc-arr @tab-arro       @spc-sym       @ret-num   - @bspc-fky
+)
+
+(deflayer sym
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    S-[  S-7  S-8  S-9  S-]  C-y  C-v  C-c  C-x  C-z  _    _    _
+  _    S-;  S-4  S-5  S-6  S-=  @mal @mad @mau @mar _    _    _
+  _ _  S-`  S-1  S-2  S-3  S-\  @mhl @mhd @mhu @mhr _    _
+  _    S-9  @s0              _            mltp _    @mrtp
+)
+
+(deflayer arrow
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @psc _    _    _    _    bck  pgdn pgup fwd  _    _    _    _
+  _    lmet ralt lctl lsft _    left down up   rght _    _    _    
+  _ @off _  _    _    _    _    _    _    _    _    _    _
+  _    lmet  _           _              _    _    _ 
+)
+
+(deflayer num
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    [    7    8    9    ]    _    _    _    _    _    _    _    _
+  _    ;    4    5    6    =    _    rsft rctl ralt lalt _    _
+  _ _  `    1    2    3    \    _    _    _    _    _    _
+  _    .    0                -            _    _    _
+)
+
+(deflayer fky
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    f12  f7   f8   f9    -    _    _    _    _    _    _    _    _
+  _    f11  f4   f5   f6    -    _    rsft rctl ralt lalt _    _
+  _ _  f10  f1   f2  f3    -    _    _    _    _    _    _
+  _    .    0                -            _    _    _
+)
+
+(deflayer off
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft @on  z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)

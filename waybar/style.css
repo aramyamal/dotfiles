@@ -1,0 +1,203 @@
+/* ===== IMPORTS ===== */
+@import "everforest-light.css";
+
+/* ===== GLOBAL STYLES ===== */
+* {
+    font-family: "Fira Code Nerd Font";
+    font-size: 10px;
+    font-weight: normal;
+    min-height: 0;
+    transition: none;
+}
+
+/* ===== MAIN WINDOW ===== */
+window#waybar {
+    background: alpha(@background, 0.75);
+    color: @foreground;
+    border-bottom: 3px solid alpha(@foreground, 0.15);
+}
+
+
+/* ===== COMMON MODULE STYLES ===== */
+#pulseaudio,
+#clock,
+#battery,
+#temperature,
+#network,
+#tray,
+#custom-swaync,
+#idle_inhibitor,
+#load,
+#memory,
+#bluetooth,
+#custom-updates,
+#custom-gpu-usage,
+#systemd-failed-units,
+#custom-gpu-temp,
+#custom-vpn {
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 1px 8px;
+    transition: background-color 150ms ease;
+    color: @foreground;
+    border-radius: 5px;
+    min-width: 10px;
+}
+
+#pulseaudio:hover,
+#clock:hover,
+#battery:hover,
+#temperature:hover,
+#network:hover,
+#tray:hover,
+#custom-swaync:hover,
+#idle_inhibitor:hover,
+#load:hover,
+#memory:hover,
+#bluetooth:hover,
+#custom-updates:hover,
+#custom-gpu-usage:hover,
+#systemd-failed-units:hover,
+#custom-gpu-temp:hover,
+#custom-vpn:hover {
+    background-color: @hover;
+    color: @background;
+}
+
+/* ===== INDIVIDUAL MODULES ===== */
+/* Notification Center */
+#custom-swaync {
+    color: @magenta;
+}
+
+/* Audio */
+#pulseaudio {
+    /* color: @green; */
+}
+
+/* Clock */
+#clock {
+    /* color: @blue; */
+}
+
+#clock.date {
+    /* color: @purple; */
+}
+
+/* Network */
+#network {
+    /* color: @orange; */
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor {
+    padding: 2px 10px 2px 10px;
+    color: @red;
+}
+
+#idle_inhibitor.activated {
+    color: @green;
+}
+
+/* Battery */
+#battery.charging,
+#battery.plugged {
+    color: @green;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+    animation: blink 1s infinite;
+}
+
+#temperature.critical {
+    color: @red;
+    animation: blink 1s infinite;
+}
+
+/* ===== WORKSPACES ===== */
+#workspaces button {
+    color: @foreground;
+    padding: 0 6px;
+    border-radius: 5px;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+#workspaces button:hover {
+    background-color: @hover;
+    color: @background;
+}
+
+#workspaces button.active {
+    /* background-color: @hover; */
+    /* color: @background; */
+}
+
+#workspaces button.urgent {
+    color: @red;
+    animation: pulse 1s infinite;
+}
+
+#workspaces {
+    min-width: 290px
+}
+
+#window {
+    /* margin: 0px 0px 0px 210px; */
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px @green;
+    }
+
+    50% {
+        box-shadow: 0 0 15px @red;
+    }
+
+    100% {
+        box-shadow: 0 0 5px @red;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ===== LAYOUT ADJUSTMENTS ===== */
+.modules-left>widget:first-child>#workspaces {
+    margin-left: 0;
+}
+
+.modules-right>widget:last-child>#workspaces {
+    margin-right: 0;
+}

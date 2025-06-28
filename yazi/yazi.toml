@@ -1,0 +1,4 @@
+[opener]
+edit = [
+  { run = 'nvim +Oil "%d"', block = true }
+]

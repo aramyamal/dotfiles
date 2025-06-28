@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'black-metal'
+
+THEME="base16-black-metal"
+
+for SOCKET in /run/user/1000/nvim.*; do
+  nvim --server "$SOCKET" --remote-send ":colorscheme $THEME<CR>"
+done
+
+kitty +kitten themes --reload-in=all 'Blackgaze'
+hyprctl hyprpaper reload "eDP-1, ~/pictures/black_metal.jpg"
+
+hyprctl keyword general:col.active_border "rgba(666666aa)"
+hyprctl keyword general:col.inactive_border = "rgba(333333aa)"
+
+# waybar
+sed -i '0,/everforest-light\.css/s//black_metal.css/' "$HOME/.config/waybar/style.css"
+# pkill -SIGUSR2 waybar
+
+# tmux
+tmux source-file ~/.config/tmux/black-metal.conf
+tmux refresh-client -S
+
+# mako
+cat ~/.config/mako/dark/config > ~/.config/mako/config
+makoctl reload
+notify-send "Switched to dark theme" "Black Metal"

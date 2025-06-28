@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+theme_mode_path="$HOME/.config/theme/.theme_mode"
+current_theme=$($HOME/bin/get_theme_mode)
+if [ "$current_theme" = "dark" ]; then
+    echo "light" > "$theme_mode_path"
+    "$HOME/bin/light"
+else
+    echo "dark" > "$theme_mode_path"
+    "$HOME/bin/dark"
+fi

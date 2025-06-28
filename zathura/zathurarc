@@ -1,0 +1,40 @@
+set notification-error-bg       "#fdf6e3"  # bg
+set notification-error-fg       "#f85552"      # bright:red
+set notification-warning-bg     "#fdf6e3"  # bg
+set notification-warning-fg     "#dfa000"   # bright:yellow
+set notification-bg             "#fdf6e3"  # bg
+set notification-fg             "#8da101"   # bright:green
+
+set completion-bg               "#efebd4"  # bg2
+set completion-fg               "#5c6a72"     # fg
+set completion-group-bg         "#f4f0d9"  # bg1
+set completion-group-fg         "#93b259"  # statusline1
+set completion-highlight-bg     "#3a94c5"    # bright:blue
+set completion-highlight-fg     "#efebd4"  # bg2
+
+# Define the color in index mode
+set index-bg                    "#efebd4"  # bg2
+set index-fg                    "#5c6a72"     # fg
+set index-active-bg             "#3a94c5"    # bright:blue
+set index-active-fg             "#efebd4"  # bg2
+
+set inputbar-bg                 "#fdf6e3"  # bg
+set inputbar-fg                 "#5c6a72"     # fg
+
+set statusbar-bg                "#efebd4"  # bg2
+set statusbar-fg                "#5c6a72"     # fg
+
+set highlight-color             "rgba(223,160,0,0.5)" # bright:yellow
+set highlight-active-color      "rgba(245,125,38,0.5)"   # bright:orange
+
+set default-bg                  "#fdf6e3"  # bg
+set default-fg                  "#5c6a72"     # fg
+set render-loading              true
+set render-loading-bg           "#fdf6e3"  # bg
+set render-loading-fg           "#5c6a72"     # fg
+
+# Recolor book content's color
+set recolor-lightcolor          "#fdf6e3"  # bg
+set recolor-darkcolor           "#5c6a72"     # fg
+set recolor                     "true"
+set recolor-keephue             "true"                 # keep original color
