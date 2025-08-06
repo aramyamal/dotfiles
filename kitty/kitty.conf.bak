@@ -26,7 +26,7 @@ font_family     FiraCode Nerd Font
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 10.5
+font_size 10
 
 #: Font size (in pts)
 
@@ -300,6 +300,13 @@ text_composition_strategy 1.3 20
 
 #: Stop blinking cursor after the specified number of seconds of
 #: keyboard inactivity. Set to zero to never stop blinking.
+
+cursor_trail 1
+
+cursor_trail_decay 0.05 0.1
+
+cursor_trail_start_threshold 0
+
 
 #: }}}
 

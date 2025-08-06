@@ -114,9 +114,6 @@ return require('packer').startup(function(use)
 
     use { 'nfrid/markdown-togglecheck' }
     use { 'nfrid/treesitter-utils' }
-    use({
-        "aserowy/tmux.nvim",
-    })
 
     -- use 'mfussenegger/nvim-jdtls'
 
@@ -137,6 +134,8 @@ return require('packer').startup(function(use)
     use "RRethy/base16-nvim"
 
     use "lewis6991/gitsigns.nvim"
+
+    use "FabijanZulj/blame.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

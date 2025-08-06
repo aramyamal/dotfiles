@@ -16,7 +16,7 @@ vim.opt.smartindent = true
 -- Let Undotree do all undos with "u"
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.config/nvi/undodir"
 vim.opt.undofile = true
 
 -- Remove highlight search and add increment search
@@ -45,3 +45,13 @@ vim.g.mapleader = " "
 
 -- Make command line height invisible
 vim.opt.cmdheight = 0
+
+-- Show diagnostics inline
+vim.diagnostic.config({
+    virtual_lines = false,
+    virtual_text = true,
+    underline = true,
+    signs = true,
+    severity_sort = true,
+    update_in_insert = true
+})

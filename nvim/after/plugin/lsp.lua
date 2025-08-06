@@ -5,7 +5,7 @@ vim.api.nvim_create_augroup("AutoFormat", {})
 vim.api.nvim_create_autocmd(
     "BufWritePost",
     {
-        pattern = { "*.lua", "*.go", "*.ts", "*.cpp", "*.c", "*.h, *.ts, *.js, *.html, *.css" },
+        pattern = { "*.rs", "*.lua", "*.go", "*.ts", "*.cpp", "*.c", "*.h, *.ts, *.js, *.html, *.css" },
         group = "AutoFormat",
         callback = function()
             vim.lsp.buf.format()
