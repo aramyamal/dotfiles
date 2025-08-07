@@ -21,12 +21,28 @@ end)
 
 --- if you want to know more about lsp-zero and mason.nvim
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+local lspconfig = require('lspconfig')
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = { "gopls", "clangd", "pylsp", "lua_ls", "rust_analyzer", "html" },
     handlers = {
         function(server_name)
-            require('lspconfig')[server_name].setup({})
+            if server_name == 'rust_analyzer' then
+                lspconfig.rust_analyzer.setup({
+                    settings = {
+                        ["rust-analyzer"] = {
+                            diagnostics = {
+                                enable = true,
+                                experimental = {
+                                    enable = true,
+                                },
+                            },
+                        },
+                    },
+                })
+            else
+                lspconfig[server_name].setup({})
+            end
         end,
     },
 })
@@ -64,7 +80,7 @@ cmp.setup({
 })
 
 -- ### Custom lsp configs: ###
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
 
 -- C
 -- lspconfig.clangd.setup({

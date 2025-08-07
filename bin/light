@@ -17,7 +17,7 @@ hyprctl keyword general:col.inactive_border = "rgba(e0dcc7aa)"
 
 # waybar
 sed -i '0,/black_metal\.css/s//everforest-light.css/' "$HOME/.config/waybar/style.css"
-# pkill -SIGUSR2 waybar
+pkill -SIGUSR2 waybar
 
 # tmux
 tmux source-file ~/.config/tmux/everforest-light.conf

@@ -2,8 +2,8 @@ local colors = {
     base00 = "#000000",
     base01 = "#121212",
     base02 = "#222222",
-    base03 = "#333333",
-    base04 = "#b99a9a",
+    base03 = "#444444",
+    base04 = "#828282",
     base05 = "#c1c1c1",
     base06 = "#b99a9a",
     base07 = "#c1c1c1",
@@ -14,7 +14,7 @@ local colors = {
     base0C = "#8e7b7b",
     base0D = "#7c8080",
     base0E = "#b99a9a",
-    base0F = "#444444",
+    base0F = "#555555",
 }
 
 require('base16-colorscheme').setup(colors)
