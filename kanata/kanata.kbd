@@ -40,6 +40,7 @@
   l (tap-hold $tap-time $hold-time-sft l ralt)
   ' (tap-hold $tap-time $hold-time-ctrl ' rmet)
   ;; s0 (tap-hold $tap-time $hold-time-ctrl S-0 rmet)
+  sls (tap-hold $tap-time $hold-time-sft / lalt)
 
   esc (caps-word 2000)
 
@@ -90,7 +91,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    p    ]    \
   @cec @a   @s   @d   @f   g    h    @j   @k   @l   @'   ;    ret
-  lsft lalt z   x    c    v    b    n    m    ,    .    /    lalt
+  lsft lalt z    x    c    v    b    n    m    ,    .    @sls rsft
   lctl @esc-arr @tab-arro       @spc-sym       @ret-num   - @bspc-fky
 )
 
