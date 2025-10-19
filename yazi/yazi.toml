@@ -1,4 +1,38 @@
 [opener]
 edit = [
-  { run = 'nvim +Oil "%d"', block = true }
+  { run = 'nvim "$@"', block = true }
+]
+
+oil = [
+  { run = 'nvim +Oil "$0"', block = true }
+]
+
+zathura = [
+  { run = 'zathura "$0"', orphan = true}
+]
+
+vlc = [
+  { run = 'vlc "$@"', orphan = true }
+]
+
+imv = [
+  { run = 'imv "$@"', orphan = true }
+]
+
+[open]
+prepend_rules = [
+  # PDFs → Zathura
+  { name = "*.pdf", use = "zathura" },
+
+  # Images → Vimiv
+  { mime = "image/*", use = "imv" },
+
+  # Videos → VLC
+  { mime = "video/*", use = "vlc" },
+
+  # Text files → Neovim
+  { mime = "text/*", use = "edit" },
+
+  # Directories → Oil in Neovim
+  { mime = "inode/directory", use = "oil" }
 ]

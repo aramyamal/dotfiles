@@ -2,6 +2,7 @@
 
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'black-metal'
+gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font'
 
 THEME_PRE="base16-black-metal"
 THEME="base16-blackgaze"
@@ -13,6 +14,7 @@ done
 
 kitty +kitten themes --reload-in=all 'Blackgaze'
 hyprctl hyprpaper reload "eDP-1, ~/pictures/black_metal.jpg"
+hyprctl hyprpaper reload "DP-1, ~/pictures/black_metal.jpg"
 
 hyprctl keyword general:col.active_border "rgba(666666aa)"
 hyprctl keyword general:col.inactive_border = "rgba(333333aa)"
@@ -29,3 +31,9 @@ tmux refresh-client -S
 cat ~/.config/mako/dark/config > ~/.config/mako/config
 makoctl reload
 notify-send "Switched to dark theme" "Black Metal"
+
+# zathura
+cat ~/.config/zathura/zathurarc-dark > ~/.config/zathura/zathurarc
+
+# wofi
+cat ~/.config/wofi/dark/style.css > ~/.config/wofi/style.css

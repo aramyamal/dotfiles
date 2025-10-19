@@ -40,9 +40,6 @@
                 "active": "|", // This is used if you use {icon} for the active workspace
                 "default": " "
             },
-            "persistent-workspaces": {
-                "*": ["dev", "web", "chat", "note", "util", "misc"]
-            }
         },
         "idle_inhibitor": {
             "format": "{icon}",
