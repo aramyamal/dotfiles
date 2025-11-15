@@ -3,7 +3,5 @@ Description=Kanata key remapping daemon for laptop keyboard
 
 [Service]
 Type=simple
-ExecStart=sudo /usr/bin/kanata --cfg /home/aram/.config/kanata/kanata.kbd
+ExecStart=sudo /usr/bin/kanata -c /home/aram/.config/kanata/kanata.kbd
 
-[Install]
-WantedBy=default.target

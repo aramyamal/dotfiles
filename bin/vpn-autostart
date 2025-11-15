@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Usage: vpn-autostart <config-name>
+# Example: vpn-autostart wg-SE-DE-1
+# Assumes config at: $HOME/vpn/<config-name>.conf
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <config-name>" >&2
+  exit 1
+fi
+
+NAME="$1"
+VPN_CONF="$HOME/vpn/$NAME.conf"
+
+if [ ! -f "$VPN_CONF" ]; then
+  echo "Config not found: $VPN_CONF" >&2
+  exit 1
+fi
+
+# Check if interface already up
+if sudo wg show interfaces 2>/dev/null | tr ' ' '\n' | grep -qx "$NAME"; then
+  # Already up, do nothing
+  exit 0
+fi
+
+# Bring it up
+sudo wg-quick up "$VPN_CONF"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Get first WireGuard interface, if any
+current_if="$(sudo wg show interfaces 2>/dev/null | tr ' ' '\n' | head -n1 || true)"
+
+if [ -n "$current_if" ]; then
+  icon="󰌾"  # closed lock
+  text="$icon $current_if"
+  tooltip="VPN: $current_if (connected)"
+  class="connected"
+else
+  icon="󰍁"  # open lock
+  text="$icon"
+  tooltip="VPN: disconnected"
+  class="disconnected"
+fi
+
+# Escape backslashes and double quotes for JSON
+json_escape() {
+  printf '%s' "$1" \
+    | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+}
+
+text_esc=$(json_escape "$text")
+tooltip_esc=$(json_escape "$tooltip")
+class_esc=$(json_escape "$class")
+
+printf '{ "text": "%s", "tooltip": "%s", "class": "%s" }\n' \
+  "$text_esc" "$tooltip_esc" "$class_esc"

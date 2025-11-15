@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Build a list of full paths and their relative paths
-mapfile -t full_paths < <(find ~/Documents -type f -iname '*.pdf' -print)
+# Build a list of full paths and their relative paths (following symlinks)
+mapfile -t full_paths < <(find -L ~/Documents -type f -iname '*.pdf' -print)
 mapfile -t rel_paths < <(printf '%s\n' "${full_paths[@]}" | sed "s|^$HOME/Documents/||")
 
 # Show only the relative paths in wofi
@@ -19,4 +19,3 @@ done
 if [[ -n "$selected_full" ]]; then
   exec uwsm app -- zathura "$selected_full"
 fi
-

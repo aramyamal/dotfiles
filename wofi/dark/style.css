@@ -1,19 +1,19 @@
 window {
     padding: 50px;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(25, 25, 25, 0.85);
     font-family: 'JetBrainsMono Nerd Font';
     font-size: 15px;
     border-radius: 7px;
-    border: 3px solid rgba(92, 92, 92, 0.3);
+    border: 3px solid rgba(61, 56, 57, 0.3);
 }
 
 #input {
     margin: 20px 15px;
     padding: 10px 20px;
-    background-color: #333333;
+    background-color: #303030;
     border-radius: 7px;
-    border: 3px solid rgba(92, 92, 92, 0.3);
-    color: #c1c1c1; 
+    border: 3px solid rgba(64, 64, 64, 0.3);
+    color: #bbbbbb;
 }
 
 #input:focus {
@@ -29,14 +29,14 @@ window {
 }
 
  #entry:selected { 
-    background-color: #333333;
-     border-radius: 5px; 
+    background-color: #404040;
+    border-radius: 5px; 
  } 
 
 #text {
-    color: #c1c1c1;
+    color: #C9C9C9;
 }
 
 #text:selected {
-    background-color: #333333; 
+    color: #C9C9C9; 
 }

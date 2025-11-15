@@ -1,5 +1,5 @@
 /* ===== IMPORTS ===== */
-@import "everforest-light.css";
+@import "zenwritten_dark.css";
 
 /* ===== GLOBAL STYLES ===== */
 * {
@@ -103,6 +103,13 @@ window#waybar {
 #battery.charging,
 #battery.plugged {
     color: @green;
+}
+
+#custom-vpn.disconnected {
+    color: @red;
+}
+
+#custom-vpn.connected {
 }
 
 #battery.warning {

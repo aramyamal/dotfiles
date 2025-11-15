@@ -1,0 +1,109 @@
+#!/bin/bash
+
+set -euo pipefail
+
+VPN_DIR="$HOME/vpn"
+MORE_URL="https://account.proton.me/u/2/vpn/WireGuard"
+
+if [ ! -d "$VPN_DIR" ]; then
+  echo "VPN directory $VPN_DIR does not exist." >&2
+  exit 1
+fi
+
+# Find configs
+mapfile -t files < <(find "$VPN_DIR" -maxdepth 1 -type f -name '*.conf' | sort)
+
+if [ "${#files[@]}" -eq 0 ]; then
+  echo "No .conf files found in $VPN_DIR" >&2
+  exit 1
+fi
+
+# Determine all current wg interfaces (may be multiple)
+readarray -t current_ifs < <(
+  sudo wg show interfaces 2>/dev/null | tr ' ' '\n' | sed '/^$/d' || true
+)
+
+if [ "${#current_ifs[@]}" -gt 0 ]; then
+  status="STATUS: connected (${current_ifs[*]})"
+else
+  status="STATUS: disconnected"
+fi
+
+# Build menu (no status as choice; status goes to preview)
+menu_items=()
+
+if [ "${#current_ifs[@]}" -gt 0 ]; then
+  # Only show disconnect action if something is connected
+  menu_items+=("ACTION: disconnect all")
+fi
+
+# "More connections" entry 
+menu_items+=("ACTION: get more connections")
+
+for f in "${files[@]}"; do
+  menu_items+=("$(basename "$f")")
+done
+
+# Preview: show status + full wg show
+choice="$(
+  printf '%s\n' "${menu_items[@]}" |
+    fzf --prompt="VPN: " \
+        --preview-window=right:55%:wrap \
+        --preview="
+          echo '$status'
+          echo
+          echo '=== wg show ==='
+          sudo wg show 2>/dev/null || echo 'No active WireGuard interfaces.'
+        "
+)"
+
+[ -z "$choice" ] && exit 0  # Esc / Ctrl-C
+
+case "$choice" in
+  "ACTION: get more connections")
+      echo "Opening $MORE_URL..." >&2
+    xdg-open "$MORE_URL" >/dev/null 2>&1 &
+    sleep 1
+    exit 0
+    ;;
+  "ACTION: disconnect all")
+    # Bring down all currently active interfaces using configs in $VPN_DIR
+    for ifc in "${current_ifs[@]}"; do
+      conf="$VPN_DIR/$ifc.conf"
+      if [ -f "$conf" ]; then
+        echo "Disconnecting $ifc via $conf..."
+        sudo wg-quick down "$conf"
+      else
+        echo "Config $conf not found, skipping $ifc" >&2
+      fi
+    done
+    exit 0
+    ;;
+esac
+
+# Else: user picked a config file
+conf="$choice"
+ifname="${conf%.conf}"
+
+conf_path="$VPN_DIR/$conf"
+
+if [ ! -f "$conf_path" ]; then
+  echo "Config $conf_path not found" >&2
+  exit 1
+fi
+
+# Always disconnect all existing interfaces first, then connect chosen one
+if [ "${#current_ifs[@]}" -gt 0 ]; then
+  for ifc in "${current_ifs[@]}"; do
+    conf_down="$VPN_DIR/$ifc.conf"
+    if [ -f "$conf_down" ]; then
+      echo "Disconnecting $ifc via $conf_down..."
+      sudo wg-quick down "$conf_down"
+    else
+      echo "Config $conf_down not found, skipping $ifc" >&2
+    fi
+  done
+fi
+
+echo "Connecting $ifname via $conf_path..."
+sudo wg-quick up "$conf_path"

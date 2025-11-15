@@ -1,41 +1,50 @@
-set notification-error-bg       "#fdf6e3"  # bg
-set notification-error-fg       "#f85552"      # bright:red
-set notification-warning-bg     "#fdf6e3"  # bg
-set notification-warning-fg     "#dfa000"   # bright:yellow
-set notification-bg             "#fdf6e3"  # bg
-set notification-fg             "#8da101"   # bright:green
+# Zenwritten Dark Zathura Theme
 
-set completion-bg               "#efebd4"  # bg2
-set completion-fg               "#5c6a72"     # fg
-set completion-group-bg         "#f4f0d9"  # bg1
-set completion-group-fg         "#93b259"  # statusline1
-set completion-highlight-bg     "#3a94c5"    # bright:blue
-set completion-highlight-fg     "#efebd4"  # bg2
+# Notification Colors
+set notification-error-bg       "#191919"
+set notification-error-fg       "#DE6E7C"
+set notification-warning-bg     "#191919"
+set notification-warning-fg     "#B77E64"
+set notification-bg             "#191919"
+set notification-fg             "#819B69"
 
-# Define the color in index mode
-set index-bg                    "#efebd4"  # bg2
-set index-fg                    "#5c6a72"     # fg
-set index-active-bg             "#3a94c5"    # bright:blue
-set index-active-fg             "#efebd4"  # bg2
+# Completion Menu Colors
+set completion-bg               "#303030"
+set completion-fg               "#BBBBBB"
+set completion-group-bg         "#404040"
+set completion-group-fg         "#66A5AD"
+set completion-highlight-bg     "#6099C0"
+set completion-highlight-fg     "#191919"
 
-set inputbar-bg                 "#fdf6e3"  # bg
-set inputbar-fg                 "#5c6a72"     # fg
+# Index Mode Colors
+set index-bg                    "#303030"
+set index-fg                    "#BBBBBB"
+set index-active-bg             "#6099C0"
+set index-active-fg             "#191919"
 
-set statusbar-bg                "#efebd4"  # bg2
-set statusbar-fg                "#5c6a72"     # fg
+# Input Bar Colors
+set inputbar-bg                 "#191919"
+set inputbar-fg                 "#BBBBBB"
 
-set highlight-color             "rgba(223,160,0,0.5)" # bright:yellow
-set highlight-active-color      "rgba(245,125,38,0.5)"   # bright:orange
+# Status Bar Colors
+set statusbar-bg                "#303030"
+set statusbar-fg                "#BBBBBB"
 
-set default-bg                  "#fdf6e3"  # bg
-set default-fg                  "#5c6a72"     # fg
+# Highlight Colors
+set highlight-color             "rgba(183,126,100,0.5)"  # B77E64
+set highlight-active-color      "rgba(222,110,124,0.5)"  # DE6E7C
+
+# Default Rendering Colors
+set default-bg                  "#191919"
+set default-fg                  "#BBBBBB"
 set render-loading              true
-set render-loading-bg           "#fdf6e3"  # bg
-set render-loading-fg           "#5c6a72"     # fg
+set render-loading-bg           "#191919"
+set render-loading-fg           "#BBBBBB"
 
-# Recolor book content's color
-set recolor-lightcolor          "#fdf6e3"  # bg
-set recolor-darkcolor           "#5c6a72"     # fg
-set recolor                     "true"
+# Recolor Book Content
+set recolor-lightcolor          "#191919"
+set recolor-darkcolor           "#BBBBBB"
+set recolor                     true
 
-set selection-clipboard clipboard
+# Clipboard Behavior
+set selection-clipboard         clipboard

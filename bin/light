@@ -4,34 +4,38 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-light
 gsettings set org.gnome.desktop.interface gtk-theme 'Everforest-Light-Medium'
 gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font'
 
-THEME="everforest"
+THEME="zenwritten"
 
 for SOCKET in /run/user/1000/nvim.*; do
+  nvim --server "$SOCKET" --remote-send ":set background=light<CR>"
   nvim --server "$SOCKET" --remote-send ":colorscheme $THEME<CR>"
 done
 
-kitty +kitten themes --reload-in=all 'Everforest Light Medium'
-hyprctl hyprpaper reload "eDP-1, ~/pictures/franz_richard_unterberger-amalfi.jpg"
-hyprctl hyprpaper reload "DP-1, ~/pictures/franz_richard_unterberger-amalfi.jpg"
+kitty +kitten themes --reload-in=all zenwritten_light_lines
+hyprctl hyprpaper reload "eDP-1, ~/pictures/zenwritten_light_frame.jpg"
+hyprctl hyprpaper reload "DP-1, ~/pictures/zenwritten_light_frame.jpg"
 
-hyprctl keyword general:col.active_border "rgba(93b259ee)"
-hyprctl keyword general:col.inactive_border = "rgba(e0dcc7aa)"
+hyprctl keyword general:col.active_border "rgba(5c5c5c55)"
+hyprctl keyword general:col.inactive_border = "rgba(c6c3c3ee)"
 
 # waybar
-sed -i '0,/black_metal\.css/s//everforest-light.css/' "$HOME/.config/waybar/style.css"
+sed -i '0,/zenwritten_dark\.css/s//zenwritten_light.css/' "$HOME/.config/waybar/style.css"
 pkill -SIGUSR2 waybar
 
 # tmux
-tmux source-file ~/.config/tmux/everforest-light.conf
+tmux source-file ~/.config/tmux/zenwritten_light.conf
 tmux refresh-client -S
 
 # mako
 cat ~/.config/mako/light/config > ~/.config/mako/config
 makoctl reload
-notify-send "Switched to light theme" "Everforest Light Medium"
+notify-send "Switched to light theme" "Zenwritten Light"
 
 # zathura
 cat ~/.config/zathura/zathurarc-light > ~/.config/zathura/zathurarc
 
 # wofi
 cat ~/.config/wofi/light/style.css > ~/.config/wofi/style.css
+
+# hyprlock
+sed -i 's/BBBBBB/EFEFEF/g' "$HOME/.config/hypr/hyprlock.conf"
