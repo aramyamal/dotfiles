@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+info=$(curl -s https://ipapi.co/json/)
+[ -z "$info" ] && echo '{"text":"?", "tooltip":"No data"}' && exit 0
+
+ip=$(echo "$info" | jq -r '.ip // "Unknown IP"')
+city=$(echo "$info" | jq -r '.city // "Unknown city"')
+region=$(echo "$info" | jq -r '.region // "Unknown region"')
+country=$(echo "$info" | jq -r '.country_name // "Unknown country"')
+country_code=$(echo "$info" | jq -r '.country_code // "??"')
+continent_code=$(echo "$info" | jq -r '.continent_code // "?"')
+postal=$(echo "$info" | jq -r '.postal // "?"')
+timezone=$(echo "$info" | jq -r '.timezone // "?"')
+utc_offset=$(echo "$info" | jq -r '.utc_offset // "?"')
+currency=$(echo "$info" | jq -r '.currency // "?"')
+currency_name=$(echo "$info" | jq -r '.currency_name // "?"')
+languages=$(echo "$info" | jq -r '.languages // "?"')
+asn=$(echo "$info" | jq -r '.asn // "?"')
+org=$(echo "$info" | jq -r '.org // "?"')
+network=$(echo "$info" | jq -r '.network // "?"')
+version=$(echo "$info" | jq -r '.version // "?"')
+latitude=$(echo "$info" | jq -r '.latitude // "?"')
+longitude=$(echo "$info" | jq -r '.longitude // "?"')
+
+# Text: only city and country
+text="$city, $country"
+
+# Tooltip: multiple lines
+tooltip=$(cat <<EOF
+IP: $ip ($version)
+Org: $org
+ASN: $asn
+Network: $network
+
+Location:
+  City: $city
+  Region: $region
+  Postal: $postal
+  Country: $country ($country_code, $continent_code)
+  Coords: $latitude, $longitude
+
+Time:
+  Timezone: $timezone
+  UTC offset: $utc_offset
+
+Misc:
+  Currency: $currency ($currency_name)
+  Languages: $languages
+EOF
+)
+
+# Escape double quotes and newlines for JSON
+tooltip_escaped=$(printf '%s' "$tooltip" | sed ':a;N;$!ba;s/\n/\\n/g; s/"/\\"/g')
+text_escaped=$(printf '%s' "$text" | sed 's/"/\\"/g')
+
+echo "{\"text\":\"$text_escaped\",\"tooltip\":\"$tooltip_escaped\"}"

@@ -15,8 +15,9 @@
             "hyprland/window"
         ],
         "modules-right": [
-         "custom/vpn",
             "network",
+         "custom/vpn",
+            "custom/ip_location",
         "bluetooth",
         "pulseaudio",
         "clock",
@@ -184,5 +185,10 @@
     "exec": "/home/aram/.config/bin/vpn-status-waybar",
     "interval": 2,
     "on-click": "uwsm app -- kitty --title VpnFloating -e vpn-menu"
-  }
+  },
+  "custom/ip_location": {
+  "exec": "~/.config/bin/ip_location_waybar",
+  "return-type": "json",
+  "interval": 300
+}
 }

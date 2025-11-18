@@ -1,5 +1,5 @@
 /* ===== IMPORTS ===== */
-@import "zenwritten_dark.css";
+@import "zenwritten_light.css";
 
 /* ===== GLOBAL STYLES ===== */
 * {
@@ -19,6 +19,7 @@ window#waybar {
 
 
 /* ===== COMMON MODULE STYLES ===== */
+#custom-ip_location,
 #pulseaudio,
 #clock,
 #battery,
@@ -44,6 +45,7 @@ window#waybar {
     min-width: 10px;
 }
 
+#custom-ip_location:hover,
 #pulseaudio:hover,
 #clock:hover,
 #battery:hover,

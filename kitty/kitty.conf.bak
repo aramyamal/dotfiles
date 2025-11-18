@@ -2486,7 +2486,7 @@ map ctrl+shift+minus       change_font_size all -0.5
 
 
 # BEGIN_KITTY_THEME
-# zenwritten_light_lines
+# zenwritten_dark_lines
 include current-theme.conf
 # END_KITTY_THEME
 #
