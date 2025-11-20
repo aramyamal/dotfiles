@@ -1,7 +1,7 @@
-background-color=#191919
+background-color=#EEEEEE
 font=JetBrainsMono Nerd Font 10
-text-color=#BBBBBB
-border-color=#404040
+text-color=#353535
+border-color=#D7D7D7
 border-radius=5
 border-size=3
 default-timeout=10000

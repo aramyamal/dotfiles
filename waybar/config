@@ -1,4 +1,6 @@
 {
+      "layer": "top",        // optional, if you want; can be "top", "bottom", "overlay"
+  "position": "top",
     "height": 32,
         "spacing": 0,
         "reload_style_on_change": true,
@@ -189,6 +191,8 @@
   "custom/ip_location": {
   "exec": "~/.config/bin/ip_location_waybar",
   "return-type": "json",
-  "interval": 300
+  "interval": 300,
+      "exec-on-event": true,
+  "on-click": "notify-send 'Updating IP location...'"
 }
 }

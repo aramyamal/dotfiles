@@ -1,50 +1,50 @@
-# Zenwritten Dark Zathura Theme
+# Zenwritten Light (Original) Zathura Theme
 
-# Notification Colors
-set notification-error-bg       "#191919"
-set notification-error-fg       "#DE6E7C"
-set notification-warning-bg     "#191919"
-set notification-warning-fg     "#B77E64"
-set notification-bg             "#191919"
-set notification-fg             "#819B69"
+# Main UI Colors
+set notification-error-bg       "#EEEEEE"
+set notification-error-fg       "#A8334C"
+set notification-warning-bg     "#EEEEEE"
+set notification-warning-fg     "#944927"
+set notification-bg             "#EEEEEE"
+set notification-fg             "#4F6C31"
 
-# Completion Menu Colors
-set completion-bg               "#303030"
-set completion-fg               "#BBBBBB"
-set completion-group-bg         "#404040"
-set completion-group-fg         "#66A5AD"
-set completion-highlight-bg     "#6099C0"
-set completion-highlight-fg     "#191919"
+# Completion Menu
+set completion-bg               "#CFCFCF"
+set completion-fg               "#353535"
+set completion-group-bg         "#D7D7D7"
+set completion-group-fg         "#3B8992"
+set completion-highlight-bg     "#286486"
+set completion-highlight-fg     "#EEEEEE"
 
-# Index Mode Colors
-set index-bg                    "#303030"
-set index-fg                    "#BBBBBB"
-set index-active-bg             "#6099C0"
-set index-active-fg             "#191919"
+# Index / Sidebar
+set index-bg                    "#CFCFCF"
+set index-fg                    "#353535"
+set index-active-bg             "#286486"
+set index-active-fg             "#EEEEEE"
 
-# Input Bar Colors
-set inputbar-bg                 "#191919"
-set inputbar-fg                 "#BBBBBB"
+# Input Bar
+set inputbar-bg                 "#EEEEEE"
+set inputbar-fg                 "#353535"
 
-# Status Bar Colors
-set statusbar-bg                "#303030"
-set statusbar-fg                "#BBBBBB"
+# Status Bar
+set statusbar-bg                "#CFCFCF"
+set statusbar-fg                "#353535"
 
-# Highlight Colors
-set highlight-color             "rgba(183,126,100,0.5)"  # B77E64
-set highlight-active-color      "rgba(222,110,124,0.5)"  # DE6E7C
+# Search Highlights
+set highlight-color             "rgba(148,73,39,0.5)"    # #944927
+set highlight-active-color      "rgba(168,51,76,0.5)"   # #A8334C
 
-# Default Rendering Colors
-set default-bg                  "#191919"
-set default-fg                  "#BBBBBB"
+# Document View
+set default-bg                  "#EEEEEE"
+set default-fg                  "#353535"
 set render-loading              true
-set render-loading-bg           "#191919"
-set render-loading-fg           "#BBBBBB"
+set render-loading-bg           "#EEEEEE"
+set render-loading-fg           "#353535"
 
-# Recolor Book Content
-set recolor-lightcolor          "#191919"
-set recolor-darkcolor           "#BBBBBB"
+# Recolor Mode
+set recolor-lightcolor          "#EEEEEE"
+set recolor-darkcolor           "#353535"
 set recolor                     true
 
-# Clipboard Behavior
+# Selection Clipboard
 set selection-clipboard         clipboard
