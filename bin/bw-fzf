@@ -6,7 +6,8 @@ trap 'cleanup' EXIT
 ITEMS=
 TIMEOUT=60s
 SEARCH_TERM=
-SESSION_FILE="$HOME/.bw-fzf-session"
+# SESSION_FILE="$HOME/.bw-fzf-session"
+SESSION_FILE="/tmp/bw-fzf-session"
 TIMEOUT_PID=
 TIMESTAMP_FILE="/tmp/bw-fzf-active.timestamp"
 TEMP_ITEMS_FILE=

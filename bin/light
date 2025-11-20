@@ -12,8 +12,8 @@ for SOCKET in /run/user/1000/nvim.*; do
 done
 
 kitty +kitten themes --reload-in=all zenwritten_light_lines
-hyprctl hyprpaper reload "eDP-1, ~/pictures/zenwritten_light_frame.jpg"
-hyprctl hyprpaper reload "DP-1, ~/pictures/zenwritten_light_frame.jpg"
+hyprctl hyprpaper reload "eDP-1, ~/.config/wallpaper/zenwritten_light_frame.jpg"
+hyprctl hyprpaper reload "DP-1, ~/.config/wallpaper/zenwritten_light_frame.jpg"
 
 hyprctl keyword general:col.active_border "rgba(5c5c5c55)"
 hyprctl keyword general:col.inactive_border = "rgba(c6c3c3ee)"
@@ -39,3 +39,6 @@ cat ~/.config/wofi/light/style.css > ~/.config/wofi/style.css
 
 # hyprlock
 sed -i 's/BBBBBB/EFEFEF/g' "$HOME/.config/hypr/hyprlock.conf"
+
+# btop
+sed -i 's/^color_theme *= *.*/color_theme = "zenwritten_light"/' "$HOME/.config/btop/btop.conf"
