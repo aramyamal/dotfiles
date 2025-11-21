@@ -39,6 +39,8 @@ cat ~/.config/wofi/light/style.css > ~/.config/wofi/style.css
 
 # hyprlock
 sed -i 's/BBBBBB/EFEFEF/g' "$HOME/.config/hypr/hyprlock.conf"
+sed -i 's/EFEFEF/BBBBBB/g' "$HOME/.config/hypr/loginhyprlock.conf"
+sed -i 's/zenwritten_light/zenwritten_dark/g' "$HOME/.config/hypr/loginhyprlock.conf"
 
 # btop
 sed -i 's/^color_theme *= *.*/color_theme = "zenwritten_light"/' "$HOME/.config/btop/btop.conf"
