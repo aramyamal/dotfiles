@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Build a list of full paths and their relative paths
-mapfile -t full_paths < <(find ~/Documents -type f -iname '*.pdf' -print)
-mapfile -t rel_paths < <(printf '%s\n' "${full_paths[@]}" | sed "s|^$HOME/Documents/||")
+mapfile -t full_paths < <(find ~/repos/everything/books/ -type f -iname '*.pdf' -print)
+mapfile -t rel_paths < <(printf '%s\n' "${full_paths[@]}" | sed "s|^$HOME/repos/everything/books/||")
 
 # Show only the relative paths in wofi
 selected_rel=$(printf '%s\n' "${rel_paths[@]}" | wofi --dmenu --width 800 --height 400 --prompt "Select PDF:")

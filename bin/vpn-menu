@@ -1,0 +1,73 @@
+#!/bin/bash
+
+set -euo pipefail
+
+VPN_DIR="$HOME/vpn"
+
+if [ ! -d "$VPN_DIR" ]; then
+  echo "VPN directory $VPN_DIR does not exist." >&2
+  exit 1
+fi
+
+# Find configs
+mapfile -t files < <(find "$VPN_DIR" -maxdepth 1 -type f -name '*.conf' | sort)
+
+if [ "${#files[@]}" -eq 0 ]; then
+  echo "No .conf files found in $VPN_DIR" >&2
+  exit 1
+fi
+
+# Determine current connection status (simple: any wg interface?)
+current_if="$(sudo wg show interfaces 2>/dev/null | tr ' ' '\n' | head -n1 || true)"
+if [ -n "$current_if" ]; then
+  status="STATUS: connected ($current_if)"
+else
+  status="STATUS: disconnected"
+fi
+
+# Build menu: status line + config names
+menu_items=("$status")
+for f in "${files[@]}"; do
+  menu_items+=("$(basename "$f")")
+done
+
+# Let user pick
+choice="$(printf '%s\n' "${menu_items[@]}" | fzf --prompt="VPN: ")"
+
+[ -z "$choice" ] && exit 0  # Esc / Ctrl-C
+
+# If status line selected, toggle
+if [[ "$choice" == STATUS:* ]]; then
+  if [ -n "$current_if" ]; then
+    # Disconnect current interface
+    echo "Disconnecting $current_if..."
+    sudo wg-quick down "$current_if"
+  else
+    # No interface up: ask which config to bring up
+    conf="$(printf '%s\n' "${files[@]}" | xargs -n1 basename | fzf --prompt='Connect which config: ')"
+    [ -z "$conf" ] && exit 0
+    ifname="${conf%.conf}"
+    echo "Connecting $ifname..."
+    sudo wg-quick up "$VPN_DIR/$conf"
+  fi
+  exit 0
+fi
+
+# Else: user picked a config file
+conf="$choice"
+ifname="${conf%.conf}"
+
+# If something else is connected, bring it down first
+if [ -n "$current_if" ] && [ "$current_if" != "$ifname" ]; then
+  echo "Disconnecting $current_if..."
+  sudo wg-quick down "$current_if"
+fi
+
+# Toggle for the selected config
+if ip link show "$ifname" >/dev/null 2>&1; then
+  echo "Disconnecting $ifname..."
+  sudo wg-quick down "$ifname"
+else
+  echo "Connecting $ifname..."
+  sudo wg-quick up "$VPN_DIR/$conf"
+fi

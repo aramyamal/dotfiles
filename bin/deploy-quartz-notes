@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Paths
+QUARTZ_DIR="$HOME/repos/quartz-notes-test/quartz"
+DEPLOY_DIR="$HOME/repos/aramyamal.github.io"
+
+# Build Quartz
+cd "$QUARTZ_DIR"
+npm run quartz build
+
+# Deploy notes
+cd "$DEPLOY_DIR"
+git pull
+
+rm -rf notes
+cp -r "$QUARTZ_DIR/public" ./notes
+
+# Commit and push
+git add notes
+git commit -m "notes update: $(date '+%Y-%m-%d %H:%M:%S')"
+git push

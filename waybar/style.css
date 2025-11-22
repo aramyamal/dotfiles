@@ -1,5 +1,5 @@
 /* ===== IMPORTS ===== */
-@import "everforest-light.css";
+@import "black_metal.css";
 
 /* ===== GLOBAL STYLES ===== */
 * {
@@ -51,6 +51,7 @@ window#waybar {
 #network:hover,
 #tray:hover,
 #custom-swaync:hover,
+#custom-wireguard-manager:hover,
 #idle_inhibitor:hover,
 #load:hover,
 #memory:hover,

@@ -18,6 +18,7 @@
         ],
         "modules-right": [
             "network",
+            "custom/wireguard-manager",
         "bluetooth",
         "pulseaudio",
         "clock",
@@ -179,5 +180,16 @@
       "return-type": "",
       "interval": 3,
        "tooltip-format": "GPU temperature: {}°C",
-    }
+    },
+    "custom/wireguard-manager": {
+    "interval": 3,
+    "return-type": "json",
+    "format-icons": {
+        "connected": "<span color=\"#50fa7b\">VPN: 🔒</span>",
+        "disconnected": "<span color=\"#ff5555\">VPN: 🔓</span>"
+    },
+    "on-click": "exec ~/.config/waybar/wireguard-manager/wireguard-manager.sh -t",
+    "exec": "exec ~/.config/waybar/wireguard-manager/wireguard-manager.sh -s",
+    "format": "{icon}"
+}
 }
