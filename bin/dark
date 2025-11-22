@@ -12,6 +12,7 @@ for SOCKET in /run/user/1000/nvim.*; do
 done
 
 kitty +kitten themes --reload-in=all zenwritten_dark_lines
+
 hyprctl hyprpaper reload "eDP-1, ~/.config/wallpaper/zenwritten_dark_frame.jpg"
 hyprctl hyprpaper reload "DP-1, ~/.config/wallpaper/zenwritten_dark_frame.jpg"
 
