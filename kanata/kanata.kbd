@@ -81,9 +81,10 @@
     (u i)    S-9                $chord-time all-released  ()
     (, .)    S-]                $chord-time all-released  ()
     (m ,)    S-[                $chord-time all-released  ()
-    (s d)    =                  $chord-time all-released  ()
-    (d f)    (tap-hold $tap-time $hold-time S-= (multi lctl lsft)) $chord-time all-released  ()
+    (s d)    S-=                $chord-time all-released  ()
+    (d f)    (tap-hold $tap-time $hold-time = (multi lctl lsft)) $chord-time all-released  ()
 )
+
  
 (deflayer default
   @esc f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12

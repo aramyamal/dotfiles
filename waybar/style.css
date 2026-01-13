@@ -19,6 +19,7 @@ window#waybar {
 
 
 /* ===== COMMON MODULE STYLES ===== */
+#custom-tailscale,
 #custom-ip_location,
 #pulseaudio,
 #clock,
@@ -45,6 +46,7 @@ window#waybar {
     min-width: 10px;
 }
 
+#custom-tailscale:hover,
 #custom-ip_location:hover,
 #pulseaudio:hover,
 #clock:hover,
@@ -126,6 +128,15 @@ window#waybar {
 #temperature.critical {
     color: @red;
     animation: blink 1s infinite;
+}
+
+/* Tailscale */
+#custom-tailscale.up {
+    color: @green;
+}
+
+#custom-tailscale.down {
+    color: @red;
 }
 
 /* ===== WORKSPACES ===== */

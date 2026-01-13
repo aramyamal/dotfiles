@@ -7,8 +7,6 @@
         "modules-left": [
             "hyprland/workspaces",
         "hyprland/submap",
-        //"custom/gpu-usage",
-        //"custom/gpu-temp",
         "load",
         "memory",
         "temperature",
@@ -20,6 +18,7 @@
         ],
         "modules-right": [
             "network",
+            "custom/tailscale",
          "custom/vpn",
             "custom/ip_location",
         "bluetooth",
@@ -196,5 +195,12 @@
   "interval": 300,
       "exec-on-event": true,
   "on-click": "notify-send 'Updating IP location...'"
+},
+"custom/tailscale": {
+  "format": "{}",
+  "return-type": "json",
+  "exec": "~/.config/bin/tailscale-waybar",
+  "interval": 0,
+  "on-click": "~/.config/bin/tailscale-waybar click"
 }
 }
