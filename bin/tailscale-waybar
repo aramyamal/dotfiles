@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+# Simple tailscale status / toggle script for Waybar
+
+ICON_UP=""
+ICON_DOWN=""
+
+# Build tooltip with peers (name + IP)
+tailscale_tooltip() {
+    # If tailscale isn't working, just say "down"
+    if ! status_json=$(tailscale status --peers --json 2>/dev/null); then
+        echo "Tailscale: down"
+        return
+    fi
+
+    # Extract hostname + first Tailscale IP for each peer
+    peers=$(printf '%s\n' "$status_json" | jq -r '
+        .Peer |
+        to_entries |
+        map(
+          .value |
+          [
+            .HostName,
+            ( .TailscaleIPs[0] // "" )
+          ]
+          | join(" ")
+        ) |
+        if length == 0 then
+          "no peers"
+        else
+          join("\n")
+        end
+    ')
+
+    printf 'Tailscale: up\n%s\n' "$peers"
+}
+
+# Function: print JSON for Waybar
+print_status() {
+    local status="$1"
+
+    if [[ "$status" == "running" ]]; then
+        local tooltip
+        tooltip="$(tailscale_tooltip)"
+        jq -nc \
+          --arg text "$ICON_UP" \
+          --arg tooltip "$tooltip" \
+          --arg class "up" \
+          '{ "text": $text, "tooltip": $tooltip, "class": $class }'
+    else
+        jq -nc \
+          --arg text "$ICON_DOWN" \
+          --arg tooltip "Tailscale: down" \
+          --arg class "down" \
+          '{ "text": $text, "tooltip": $tooltip, "class": $class }'
+    fi
+}
+
+# If invoked with "click" we toggle tailscale, then exit
+if [[ "$1" == "click" ]]; then
+    # very basic toggle: check if running
+    if tailscale status >/dev/null 2>&1; then
+        # Tailscale seems up -> bring it down
+        tailscale down
+    else
+        # Tailscale seems down -> bring it up
+        tailscale up
+    fi
+    exit 0
+fi
+
+# Normal mode: periodically output status every few seconds
+while :; do
+    if tailscale status >/dev/null 2>&1; then
+        print_status "running"
+    else
+        print_status "stopped"
+    fi
+    sleep 5
+done
