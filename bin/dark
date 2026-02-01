@@ -13,8 +13,8 @@ done
 
 kitty +kitten themes --reload-in=all zenwritten_dark_lines
 
-hyprctl hyprpaper wallpaper 'eDP-1, ~/.config/wallpaper/zenwritten_dark_frame.jpg, cover'
-hyprctl hyprpaper wallpaper 'DP-1, ~/.config/wallpaper/zenwritten_dark_frame.jpg, cover'
+hyprctl hyprpaper wallpaper 'eDP-1, ~/.config/wallpaper/passenger_pigeon-zenwritten-dark.jpg, cover'
+hyprctl hyprpaper wallpaper 'DP-1, ~/.config/wallpaper/passenger_pigeon-zenwritten-dark.jpg, cover'
 
 hyprctl keyword general:col.active_border "rgba(66666688)"
 hyprctl keyword general:col.inactive_border = "rgba(3D3839aa)"
